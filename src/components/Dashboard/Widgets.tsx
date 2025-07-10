@@ -30,9 +30,9 @@ const Widgets = () => {
   ]);
 
   const [alerts] = useState([
-    { id: 1, type: 'warning', message: 'Gharama za rent zimezidi budget kwa KES 15,000', severity: 'high' },
-    { id: 2, type: 'info', message: 'Lengo la akiba la mwezi limefikiwa 80%', severity: 'low' },
-    { id: 3, type: 'success', message: 'Mauzo yamezidi kwa 12% mwezi huu', severity: 'low' }
+    { id: 1, type: 'warning', message: 'Rent expenses exceeded budget by KES 15,000', severity: 'high' },
+    { id: 2, type: 'info', message: 'Monthly savings goal reached 80%', severity: 'low' },
+    { id: 3, type: 'success', message: 'Sales increased by 12% this month', severity: 'low' }
   ]);
 
   const formatKES = (value: number) => {
@@ -45,7 +45,7 @@ const Widgets = () => {
       <Card className="lg:col-span-2 shadow-lg border-0">
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
-            <span>Miamala ya Hivi Karibuni</span>
+            <span>Recent Transactions</span>
             <Badge variant="secondary" className="bg-green-100 text-green-800">5</Badge>
           </CardTitle>
         </CardHeader>
@@ -54,10 +54,10 @@ const Widgets = () => {
             <Table>
               <TableHeader>
                 <TableRow className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-700">
-                  <TableHead className="font-semibold">Maelezo</TableHead>
-                  <TableHead className="font-semibold">Jamii</TableHead>
-                  <TableHead className="font-semibold">Tarehe</TableHead>
-                  <TableHead className="font-semibold text-right">Kiasi</TableHead>
+                  <TableHead className="font-semibold">Description</TableHead>
+                  <TableHead className="font-semibold">Category</TableHead>
+                  <TableHead className="font-semibold">Date</TableHead>
+                  <TableHead className="font-semibold text-right">Amount</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -95,7 +95,7 @@ const Widgets = () => {
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
             <TrendingUp className="w-5 h-5" />
-            <span>Maendeleo ya Budget</span>
+            <span>Budget Progress</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -117,8 +117,8 @@ const Widgets = () => {
                     className={`h-2 ${isOverBudget ? 'bg-red-100' : ''}`}
                   />
                   <div className="flex justify-between items-center text-xs text-gray-500">
-                    <span>{percentage.toFixed(0)}% imetumika</span>
-                    {isOverBudget && <span className="text-red-600 font-medium">Umezidi budget!</span>}
+                    <span>{percentage.toFixed(0)}% used</span>
+                    {isOverBudget && <span className="text-red-600 font-medium">Over budget!</span>}
                   </div>
                 </div>
               );
@@ -132,7 +132,7 @@ const Widgets = () => {
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
             <AlertTriangle className="w-5 h-5" />
-            <span>Arifa na Taarifa</span>
+            <span>Alerts & Notifications</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -145,7 +145,7 @@ const Widgets = () => {
               }`}>
                 <p className="text-sm font-medium">{alert.message}</p>
                 <Badge variant={alert.severity === 'high' ? 'destructive' : 'secondary'} className="mt-2">
-                  {alert.severity === 'high' ? 'muhimu' : 'kawaida'}
+                  {alert.severity === 'high' ? 'important' : 'normal'}
                 </Badge>
               </div>
             ))}

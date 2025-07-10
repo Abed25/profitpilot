@@ -50,7 +50,7 @@ const SummaryCards = () => {
 
   const cards = [
     {
-      title: 'Jumla ya Mapato',
+      title: 'Total Income',
       value: animatedValues.income,
       icon: TrendingUp,
       color: 'text-green-700',
@@ -58,7 +58,7 @@ const SummaryCards = () => {
       change: '+8.2%'
     },
     {
-      title: 'Jumla ya Gharama',
+      title: 'Total Expenses',
       value: animatedValues.expenses,
       icon: TrendingDown,
       color: 'text-orange-700',
@@ -66,7 +66,7 @@ const SummaryCards = () => {
       change: '-2.1%'
     },
     {
-      title: 'Faida Halisi',
+      title: 'Net Profit',
       value: animatedValues.profit,
       icon: DollarSign,
       color: animatedValues.profit > 0 ? 'text-green-700' : 'text-red-700',
@@ -74,7 +74,7 @@ const SummaryCards = () => {
       change: '+15.3%'
     },
     {
-      title: 'Mwelekeo wa Mwezi',
+      title: 'Monthly Trend',
       value: animatedValues.trend,
       prefix: '',
       suffix: '%',
@@ -110,7 +110,7 @@ const SummaryCards = () => {
               <span className={card.change.startsWith('+') ? 'text-green-600' : 'text-red-600'}>
                 {card.change}
               </span>
-              {' '}kutoka mwezi uliopita
+              {' '}from last month
             </p>
           </CardContent>
         </Card>

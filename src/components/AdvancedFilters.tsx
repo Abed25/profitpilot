@@ -25,8 +25,8 @@ const AdvancedFilters = () => {
     searchKeyword: '',
     dateFrom: '',
     dateTo: '',
-    category: '',
-    type: '',
+    category: 'all',
+    type: 'all',
     minAmount: '',
     maxAmount: ''
   });
@@ -36,9 +36,15 @@ const AdvancedFilters = () => {
     'Salaries', 'Transport', 'Services', 'Miscellaneous'
   ];
 
-  const activeFiltersCount = Object.values(filters).filter(value => value !== '').length;
+  const activeFiltersCount = Object.entries(filters).filter(([key, value]) => {
+    if (key === 'category' || key === 'type') {
+      return value !== '' && value !== 'all';
+    }
+    return value !== '';
+  }).length;
 
   const handleFilterChange = (key: string, value: string) => {
+    console.log(`Filter change - ${key}:`, value); // Debug log
     setFilters({ ...filters, [key]: value });
   };
 
@@ -47,8 +53,8 @@ const AdvancedFilters = () => {
       searchKeyword: '',
       dateFrom: '',
       dateTo: '',
-      category: '',
-      type: '',
+      category: 'all',
+      type: 'all',
       minAmount: '',
       maxAmount: ''
     });
@@ -70,7 +76,7 @@ const AdvancedFilters = () => {
           >
             <div className="flex items-center space-x-2">
               <Search className="w-4 h-4" />
-              <span>Vichungio vya Kina</span>
+              <span>Advanced Filters</span>
               {activeFiltersCount > 0 && (
                 <Badge variant="secondary" className="bg-green-100 text-green-800">
                   {activeFiltersCount} active
@@ -84,51 +90,50 @@ const AdvancedFilters = () => {
         <CollapsibleContent>
           <CardContent className="pt-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-              {/* Search Keyword */}
+              {/* Search */}
               <div className="space-y-2">
-                <Label htmlFor="search-keyword">Tafuta kwa Neno</Label>
+                <Label htmlFor="search">Search</Label>
                 <Input
-                  id="search-keyword"
-                  placeholder="Tafuta katika maelezo..."
+                  id="search"
+                  placeholder="Search transaction..."
                   value={filters.searchKeyword}
                   onChange={(e) => handleFilterChange('searchKeyword', e.target.value)}
+                  onFocus={() => console.log('Search input focused, current value:', filters.searchKeyword)} // Debug log
+                  onBlur={() => console.log('Search input blurred, current value:', filters.searchKeyword)} // Debug log
                 />
               </div>
 
-              {/* Date From */}
+              {/* Date Range */}
               <div className="space-y-2">
-                <Label htmlFor="date-from">Tarehe Kuanzia</Label>
+                <Label>Date Range</Label>
+                <div className="flex space-x-2">
                 <Input
-                  id="date-from"
                   type="date"
+                    placeholder="From"
                   value={filters.dateFrom}
                   onChange={(e) => handleFilterChange('dateFrom', e.target.value)}
                 />
-              </div>
-
-              {/* Date To */}
-              <div className="space-y-2">
-                <Label htmlFor="date-to">Tarehe Mpaka</Label>
                 <Input
-                  id="date-to"
                   type="date"
+                    placeholder="To"
                   value={filters.dateTo}
                   onChange={(e) => handleFilterChange('dateTo', e.target.value)}
                 />
+                </div>
               </div>
 
               {/* Category */}
               <div className="space-y-2">
-                <Label htmlFor="category">Jamii</Label>
+                <Label htmlFor="category">Category</Label>
                 <Select
                   value={filters.category}
                   onValueChange={(value) => handleFilterChange('category', value)}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Jamii zote" />
+                    <SelectValue placeholder="All categories" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Jamii zote</SelectItem>
+                    <SelectItem value="all">All categories</SelectItem>
                     {categories.map((category) => (
                       <SelectItem key={category} value={category}>
                         {category}
@@ -140,35 +145,35 @@ const AdvancedFilters = () => {
 
               {/* Transaction Type */}
               <div className="space-y-2">
-                <Label htmlFor="type">Aina ya Muamala</Label>
+                <Label htmlFor="type">Transaction Type</Label>
                 <Select
                   value={filters.type}
                   onValueChange={(value) => handleFilterChange('type', value)}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Aina zote" />
+                    <SelectValue placeholder="All types" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Aina zote</SelectItem>
-                    <SelectItem value="income">Mapato</SelectItem>
-                    <SelectItem value="expense">Gharama</SelectItem>
+                    <SelectItem value="all">All types</SelectItem>
+                    <SelectItem value="income">Income</SelectItem>
+                    <SelectItem value="expense">Expense</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               {/* Amount Range */}
               <div className="space-y-2">
-                <Label>Kiwango cha Kiasi (KES)</Label>
+                <Label>Amount Range (KES)</Label>
                 <div className="flex space-x-2">
                   <Input
-                    placeholder="Chini"
+                    placeholder="Min"
                     type="number"
                     step="0.01"
                     value={filters.minAmount}
                     onChange={(e) => handleFilterChange('minAmount', e.target.value)}
                   />
                   <Input
-                    placeholder="Juu"
+                    placeholder="Max"
                     type="number"
                     step="0.01"
                     value={filters.maxAmount}
@@ -179,7 +184,7 @@ const AdvancedFilters = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-between items-center pt-4 border-t">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
               <div className="flex flex-wrap gap-2 w-full sm:w-auto">
                 <Button
                   variant="outline"
@@ -188,10 +193,10 @@ const AdvancedFilters = () => {
                   disabled={activeFiltersCount === 0}
                   className="flex-1 sm:flex-none"
                 >
-                  Futa Vichungio
+                  Clear Filters
                 </Button>
                 <Button size="sm" className="flex-1 sm:flex-none bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700">
-                  Tumia Vichungio
+                  Apply Filters
                 </Button>
               </div>
 

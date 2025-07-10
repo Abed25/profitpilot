@@ -8,22 +8,22 @@ const BusinessTips = () => {
 
   const tips = [
     {
-      title: "Tip ya Biashara",
-      content: "Rekodi kila muamala mdogo au mkubwa. Hii itakusaidia kujua jinsi biashara yako inavyoendelea.",
+      title: "Business Tip",
+      content: "Record every transaction, big or small. This will help you understand how your business is performing.",
       icon: Lightbulb,
       color: "text-yellow-600",
       bgColor: "bg-gradient-to-r from-yellow-100 to-amber-100"
     },
     {
-      title: "Ujuzi wa M-PESA",
-      content: "Fuatilia gharama za M-PESA kwa makini. Hizi gharama zinaweza kuwa kubwa sana ikiwa hazijachukuliwa mkazo.",
+      title: "M-PESA Awareness",
+      content: "Track your M-PESA charges carefully. These costs can add up if not monitored closely.",
       icon: TrendingUp,
       color: "text-green-600",
       bgColor: "bg-gradient-to-r from-green-100 to-emerald-100"
     },
     {
-      title: "Hadithi ya Mafanikio",
-      content: "Mama Njeri aliongeza faida yake kwa 40% baada ya kuanza kurekodi gharama zake za kila siku. Wewe pia unaweza!",
+      title: "Success Story",
+      content: "Jane increased her profit by 40% after she started recording her daily expenses. You can do it too!",
       icon: Star,
       color: "text-blue-600",
       bgColor: "bg-gradient-to-r from-blue-100 to-cyan-100"

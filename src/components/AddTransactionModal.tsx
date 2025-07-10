@@ -44,7 +44,7 @@ const AddTransactionModal = () => {
     if (!formData.amount || !formData.category || !formData.description) {
       toast({
         title: "Validation Error",
-        description: "Please fill in all required fields / Jaza sehemu zote muhimu.",
+        description: "Please fill in all required fields.",
         variant: "destructive"
       });
       return;
@@ -58,8 +58,8 @@ const AddTransactionModal = () => {
     });
 
     toast({
-      title: "Imefanikiwa!",
-      description: `${isIncome ? 'Mapato' : 'Gharama'} transaction added successfully.`,
+      title: "Success!",
+      description: `${isIncome ? 'Income' : 'Expense'} transaction added successfully.`,
     });
 
     // Reset form
@@ -77,25 +77,25 @@ const AddTransactionModal = () => {
       <DialogTrigger asChild>
         <Button className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg">
           <Plus className="w-4 h-4 mr-2" />
-          Ongeza Rekodi
+          Add Record
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] mx-4">
         <DialogHeader>
-          <DialogTitle>Ongeza Rekodi Mpya</DialogTitle>
+          <DialogTitle>Add New Record</DialogTitle>
           <DialogDescription>
-            Ingiza maelezo ya muamala wako hapa chini.
+            Enter your transaction details below.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Income/Expense Toggle */}
           <div className="flex items-center space-x-4 p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-700 rounded-lg">
             <Label htmlFor="transaction-type" className="text-sm font-medium">
-              Aina ya Muamala
+              Transaction Type
             </Label>
             <div className="flex items-center space-x-2">
               <span className={`text-sm ${!isIncome ? 'text-gray-500' : 'font-medium text-green-600'}`}>
-                Mapato
+                Income
               </span>
               <Switch
                 id="transaction-type"
@@ -103,14 +103,14 @@ const AddTransactionModal = () => {
                 onCheckedChange={(checked) => setIsIncome(!checked)}
               />
               <span className={`text-sm ${isIncome ? 'text-gray-500' : 'font-medium text-red-600'}`}>
-                Gharama
+                Expense
               </span>
             </div>
           </div>
 
           {/* Amount */}
           <div className="space-y-2">
-            <Label htmlFor="amount">Kiasi (KES) *</Label>
+            <Label htmlFor="amount">Amount (KES) *</Label>
             <div className="relative">
               <span className="absolute left-3 top-3 text-sm text-gray-400">KES</span>
               <Input
@@ -129,13 +129,13 @@ const AddTransactionModal = () => {
 
           {/* Category */}
           <div className="space-y-2">
-            <Label htmlFor="category">Jamii *</Label>
+            <Label htmlFor="category">Category *</Label>
             <Select
               value={formData.category}
               onValueChange={(value) => setFormData({ ...formData, category: value })}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Chagua jamii" />
+                <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>
                 {(isIncome ? categories.income : categories.expense).map((category) => (
@@ -152,12 +152,12 @@ const AddTransactionModal = () => {
 
           {/* Description */}
           <div className="space-y-2">
-            <Label htmlFor="description">Maelezo *</Label>
+            <Label htmlFor="description">Description *</Label>
             <div className="relative">
               <FileText className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
               <Textarea
                 id="description"
-                placeholder="Ingiza maelezo ya muamala..."
+                placeholder="Enter transaction details..."
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 className="pl-9"
@@ -169,7 +169,7 @@ const AddTransactionModal = () => {
 
           {/* Date */}
           <div className="space-y-2">
-            <Label htmlFor="date">Tarehe</Label>
+            <Label htmlFor="date">Date</Label>
             <div className="relative">
               <Calendar className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
               <Input
@@ -190,7 +190,7 @@ const AddTransactionModal = () => {
               onClick={() => setIsOpen(false)}
               className="flex-1"
             >
-              Ghairi
+              Cancel
             </Button>
             <Button
               type="submit"
@@ -200,7 +200,7 @@ const AddTransactionModal = () => {
                   : 'bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700'
               }`}
             >
-              Ongeza {isIncome ? 'Mapato' : 'Gharama'}
+              Add {isIncome ? 'Income' : 'Expense'}
             </Button>
           </div>
         </form>

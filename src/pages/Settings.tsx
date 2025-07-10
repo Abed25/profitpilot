@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { toast } from '@/hooks/use-toast';
+import Layout from '@/components/Layout';
 
 const Settings = () => {
   const [profile, setProfile] = useState({
@@ -31,37 +32,39 @@ const Settings = () => {
     
     if (profile.newPassword && profile.newPassword !== profile.confirmPassword) {
       toast({
-        title: "Kosa",
-        description: "Manenosiri mapya hayalingani.",
+        title: "Error",
+        description: "New passwords do not match.",
         variant: "destructive"
       });
       return;
     }
 
     toast({
-      title: "Imefanikiwa!",
-      description: "Maelezo ya wasifu yamebadilishwa.",
+      title: "Success!",
+      description: "Profile information updated successfully.",
     });
   };
 
   const handlePreferenceChange = (key: string, value: boolean | string) => {
     setPreferences({ ...preferences, [key]: value });
     toast({
-      title: "Mapendeleo Yamebadilishwa",
-      description: `${key.replace(/([A-Z])/g, ' $1').toLowerCase()} ${typeof value === 'boolean' ? (value ? 'yamewashwa' : 'yamezimwa') : 'yamebadilishwa'}.`,
+      title: "Preferences Updated",
+      description: `${key.replace(/([A-Z])/g, ' $1').toLowerCase()} ${typeof value === 'boolean' ? (value ? 'enabled' : 'disabled') : 'changed'}.`,
     });
   };
 
   return (
-    <div className="space-y-4 lg:space-y-6 p-4 lg:p-0">
-      <div>
-        <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
-          Settings
-        </h1>
-        <p className="text-gray-600 dark:text-gray-400 mt-1 lg:mt-2 text-sm lg:text-base">
-          Manage your account settings and preferences
-        </p>
-      </div>
+    <Layout>
+      <div className="p-4 lg:p-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-6 lg:mb-8">
+            <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
+              Settings
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-1 lg:mt-2 text-sm lg:text-base">
+              Manage your account settings and preferences
+            </p>
+          </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
         {/* Profile Settings */}
@@ -261,8 +264,10 @@ const Settings = () => {
             </div>
           </CardContent>
         </Card>
+          </div>
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
