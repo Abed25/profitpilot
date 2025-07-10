@@ -73,8 +73,8 @@ const Sidebar = ({ isCollapsed, isMobileOpen, toggleCollapse, closeMobile }: Sid
           </h1>
         </div>
 
-        {/* Navigation - Evenly Distributed */}
-        <nav className="flex-1 flex flex-col justify-center p-4">
+        {/* Navigation */}
+        <nav className="flex-1 p-4">
           <div className="space-y-4">
             {navItems.map((item) => (
               <NavLink
