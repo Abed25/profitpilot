@@ -1,73 +1,180 @@
-# Welcome to your Lovable project
+# ProfitPilot 🚀
 
-## Project info
+A modern React-based personal and business profit tracking dashboard with comprehensive financial management features.
 
-**URL**: https://lovable.dev/projects/5774dc21-3bc9-4aa1-b430-164f63cdaa80
+## ✨ Features
 
-## How can I edit this code?
+- **📊 Dashboard Analytics** - Real-time financial overview with charts and insights
+- **💰 Transaction Management** - Track income, expenses, and categorize transactions
+- **📈 Financial Reports** - Detailed reports with charts and performance metrics
+- **🏷️ Category Management** - Organize transactions with custom categories
+- **📋 Budget Planning** - Set and monitor monthly budgets with alerts
+- **🎯 Goal Tracking** - Set financial goals and track progress
+- **⚙️ Settings & Preferences** - Customize theme, notifications, and account settings
+- **🌙 Dark/Light Mode** - Persistent theme preference with system integration
+- **📱 Responsive Design** - Works seamlessly on desktop and mobile devices
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+- **Frontend**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
+- **Charts**: Recharts
+- **Icons**: Lucide React
+- **Routing**: React Router DOM
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5774dc21-3bc9-4aa1-b430-164f63cdaa80) and start prompting.
+## 🚀 Quick Start
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
+- Node.js 16+ 
+- npm, yarn, or bun
 
-**Use your preferred IDE**
+### Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+# Clone the repository
+git clone <repository-url>
+cd profit-tracker
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+# Install dependencies
+npm install
+# or
+yarn install
+# or
+bun install
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
+# or
+yarn dev
+# or
+bun dev
 ```
 
-**Edit a file directly in GitHub**
+Open [http://localhost:5173](http://localhost:5173) to view the application.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📁 Project Structure
 
-**Use GitHub Codespaces**
+```
+src/
+├── components/          # Reusable UI components
+│   ├── Dashboard/      # Dashboard-specific components
+│   ├── ui/            # shadcn/ui components
+│   ├── Layout.tsx     # Main layout with sidebar/navbar
+│   └── ...
+├── pages/             # Page components
+│   ├── Index.tsx      # Dashboard home
+│   ├── Transactions.tsx
+│   ├── Reports.tsx
+│   ├── Categories.tsx
+│   ├── Budget.tsx
+│   ├── Goals.tsx
+│   └── Settings.tsx
+├── hooks/             # Custom React hooks
+├── lib/               # Utility functions
+└── main.tsx          # App entry point
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🎨 Key Features
 
-## What technologies are used for this project?
+### Dashboard
+- Summary cards with key metrics
+- Interactive charts and graphs
+- Business tips and insights
+- Quick transaction entry
 
-This project is built with:
+### Transactions
+- Add, edit, and delete transactions
+- Advanced filtering and search
+- Category-based organization
+- Export functionality
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Reports
+- Monthly performance tracking
+- Income/expense breakdown
+- Profit margin analysis
+- Trend visualization
 
-## How can I deploy this project?
+### Budget Planning
+- Category-based budgets
+- Progress tracking
+- Alert notifications
+- Budget vs actual analysis
 
-Simply open [Lovable](https://lovable.dev/projects/5774dc21-3bc9-4aa1-b430-164f63cdaa80) and click on Share -> Publish.
+### Goals
+- Financial goal setting
+- Progress tracking
+- Deadline management
+- Achievement monitoring
 
-## Can I connect a custom domain to my Lovable project?
+## 🔧 Configuration
 
-Yes, you can!
+### Environment Variables
+Create a `.env` file in the root directory:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```env
+VITE_APP_TITLE=ProfitPilot
+VITE_API_URL=your_api_url_here
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Theme Customization
+The app supports:
+- Light/Dark mode toggle
+- System theme detection
+- Persistent theme preferences
+
+## 📱 Responsive Design
+
+- **Desktop**: Full sidebar navigation with fixed header
+- **Tablet**: Adaptive layout with collapsible sidebar
+- **Mobile**: Mobile-first design with overlay navigation
+
+## 🚀 Deployment
+
+### Build for Production
+
+```bash
+npm run build
+# or
+yarn build
+# or
+bun run build
+```
+
+### Deploy to Vercel
+
+```bash
+npm install -g vercel
+vercel
+```
+
+### Deploy to Netlify
+
+```bash
+npm run build
+# Upload dist/ folder to Netlify
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [shadcn/ui](https://ui.shadcn.com/) for beautiful UI components
+- [Tailwind CSS](https://tailwindcss.com/) for utility-first styling
+- [Lucide](https://lucide.dev/) for beautiful icons
+- [Recharts](https://recharts.org/) for data visualization
+
+---
+
+**ProfitPilot** - Your comprehensive financial management solution 💰
