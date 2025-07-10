@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { User, Mail, Lock, Bell, Palette, Shield, Globe } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -24,7 +23,7 @@ const Settings = () => {
     pushNotifications: false,
     weeklyReports: true,
     budgetAlerts: true,
-    language: 'swahili' // English or Swahili
+    language: 'english' // Changed from 'swahili' to 'english'
   });
 
   const handleProfileUpdate = (e: React.FormEvent) => {
@@ -57,10 +56,10 @@ const Settings = () => {
     <div className="space-y-4 lg:space-y-6 p-4 lg:p-0">
       <div>
         <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
-          Mipangilio
+          Settings
         </h1>
         <p className="text-gray-600 dark:text-gray-400 mt-1 lg:mt-2 text-sm lg:text-base">
-          Dhibiti mipangilio ya akaunti yako na mapendeleo
+          Manage your account settings and preferences
         </p>
       </div>
 
@@ -70,23 +69,23 @@ const Settings = () => {
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <User className="w-5 h-5" />
-              <span>Maelezo ya Wasifu</span>
+              <span>Profile Information</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleProfileUpdate} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="display-name">Jina la Onyesho</Label>
+                <Label htmlFor="display-name">Display Name</Label>
                 <Input
                   id="display-name"
                   value={profile.displayName}
                   onChange={(e) => setProfile({ ...profile, displayName: e.target.value })}
-                  placeholder="Ingiza jina lako la onyesho"
+                  placeholder="Enter your display name"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Anwani ya Barua Pepe</Label>
+                <Label htmlFor="email">Email Address</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                   <Input
@@ -98,7 +97,7 @@ const Settings = () => {
                     placeholder="your.email@example.com"
                   />
                 </div>
-                <p className="text-xs text-gray-500">Barua pepe haiwezi kubadilishwa</p>
+                <p className="text-xs text-gray-500">Email cannot be changed</p>
               </div>
 
               <Separator />
@@ -106,45 +105,45 @@ const Settings = () => {
               <div className="space-y-4">
                 <h4 className="font-medium flex items-center space-x-2">
                   <Lock className="w-4 h-4" />
-                  <span>Badilisha Nywila</span>
+                  <span>Change Password</span>
                 </h4>
 
                 <div className="space-y-2">
-                  <Label htmlFor="current-password">Nywila ya Sasa</Label>
+                  <Label htmlFor="current-password">Current Password</Label>
                   <Input
                     id="current-password"
                     type="password"
                     value={profile.currentPassword}
                     onChange={(e) => setProfile({ ...profile, currentPassword: e.target.value })}
-                    placeholder="Ingiza nywila ya sasa"
+                    placeholder="Enter current password"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="new-password">Nywila Mpya</Label>
+                  <Label htmlFor="new-password">New Password</Label>
                   <Input
                     id="new-password"
                     type="password"
                     value={profile.newPassword}
                     onChange={(e) => setProfile({ ...profile, newPassword: e.target.value })}
-                    placeholder="Ingiza nywila mpya"
+                    placeholder="Enter new password"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="confirm-password">Thibitisha Nywila Mpya</Label>
+                  <Label htmlFor="confirm-password">Confirm New Password</Label>
                   <Input
                     id="confirm-password"
                     type="password"
                     value={profile.confirmPassword}
                     onChange={(e) => setProfile({ ...profile, confirmPassword: e.target.value })}
-                    placeholder="Thibitisha nywila mpya"
+                    placeholder="Confirm new password"
                   />
                 </div>
               </div>
 
               <Button type="submit" className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700">
-                Sasisha Wasifu
+                Update Profile
               </Button>
             </form>
           </CardContent>
@@ -155,7 +154,7 @@ const Settings = () => {
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Palette className="w-5 h-5" />
-              <span>Mapendeleo</span>
+              <span>Preferences</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -163,12 +162,12 @@ const Settings = () => {
             <div className="space-y-4">
               <h4 className="font-medium flex items-center space-x-2">
                 <Globe className="w-4 h-4" />
-                <span>Lugha</span>
+                <span>Language</span>
               </h4>
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <Label htmlFor="language">Chagua Lugha</Label>
-                  <p className="text-sm text-gray-500">Badilisha lugha ya programu</p>
+                  <Label htmlFor="language">Choose Language</Label>
+                  <p className="text-sm text-gray-500">Change the application language</p>
                 </div>
                 <div className="flex items-center space-x-2">
                   <span className={`text-sm ${preferences.language === 'english' ? 'text-gray-500' : 'font-medium text-green-600'}`}>
@@ -190,11 +189,11 @@ const Settings = () => {
 
             {/* Appearance */}
             <div className="space-y-4">
-              <h4 className="font-medium">Muonekano</h4>
+              <h4 className="font-medium">Appearance</h4>
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <Label htmlFor="dark-mode">Hali ya Usiku</Label>
-                  <p className="text-sm text-gray-500">Tumia mandhari ya giza kwenye programu</p>
+                  <Label htmlFor="dark-mode">Dark Mode</Label>
+                  <p className="text-sm text-gray-500">Use dark theme across the application</p>
                 </div>
                 <Switch
                   id="dark-mode"
@@ -210,14 +209,14 @@ const Settings = () => {
             <div className="space-y-4">
               <h4 className="font-medium flex items-center space-x-2">
                 <Bell className="w-4 h-4" />
-                <span>Arifa</span>
+                <span>Notifications</span>
               </h4>
 
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
-                    <Label htmlFor="email-notifications">Arifa za Barua Pepe</Label>
-                    <p className="text-sm text-gray-500">Pokea taarifa kupitia barua pepe</p>
+                    <Label htmlFor="email-notifications">Email Notifications</Label>
+                    <p className="text-sm text-gray-500">Receive updates via email</p>
                   </div>
                   <Switch
                     id="email-notifications"
@@ -228,8 +227,8 @@ const Settings = () => {
 
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
-                    <Label htmlFor="budget-alerts">Arifa za Budget</Label>
-                    <p className="text-sm text-gray-500">Pokea taarifa unapokaribia mipaka ya budget</p>
+                    <Label htmlFor="budget-alerts">Budget Alerts</Label>
+                    <p className="text-sm text-gray-500">Get notified when approaching budget limits</p>
                   </div>
                   <Switch
                     id="budget-alerts"
@@ -246,17 +245,17 @@ const Settings = () => {
             <div className="space-y-4">
               <h4 className="font-medium flex items-center space-x-2">
                 <Shield className="w-4 h-4" />
-                <span>Usalama</span>
+                <span>Security</span>
               </h4>
               <div className="space-y-2">
                 <Button variant="outline" className="w-full">
-                  Washa Uthibitisho wa Hatua Mbili
+                  Enable Two-Factor Authentication
                 </Button>
                 <Button variant="outline" className="w-full">
-                  Pakua Data ya Akaunti
+                  Download Account Data
                 </Button>
                 <Button variant="destructive" className="w-full">
-                  Futa Akaunti
+                  Delete Account
                 </Button>
               </div>
             </div>
