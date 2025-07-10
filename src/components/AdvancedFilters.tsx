@@ -32,8 +32,8 @@ const AdvancedFilters = () => {
   });
 
   const categories = [
-    'Food & Dining', 'Transportation', 'Shopping', 'Entertainment', 
-    'Utilities', 'Healthcare', 'Salary', 'Freelance', 'Investment'
+    'Stock', 'Sales', 'Rent', 'Utilities', 'M-PESA Charges', 
+    'Salaries', 'Transport', 'Services', 'Miscellaneous'
   ];
 
   const activeFiltersCount = Object.values(filters).filter(value => value !== '').length;
@@ -57,23 +57,22 @@ const AdvancedFilters = () => {
   const exportData = (format: string) => {
     // This would typically trigger an API call to export data
     console.log(`Exporting data in ${format} format with filters:`, filters);
-    // You could implement actual export functionality here
     alert(`Exporting data in ${format} format...`);
   };
 
   return (
-    <Card className="mb-6">
+    <Card className="mb-4 lg:mb-6 shadow-lg border-0 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-gray-800 dark:to-gray-700">
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <CollapsibleTrigger asChild>
           <Button
             variant="ghost"
-            className="w-full justify-between p-4 h-auto font-normal"
+            className="w-full justify-between p-4 h-auto font-normal hover:bg-white/50 dark:hover:bg-gray-700/50"
           >
             <div className="flex items-center space-x-2">
               <Search className="w-4 h-4" />
-              <span>Advanced Filters</span>
+              <span>Vichungio vya Kina</span>
               {activeFiltersCount > 0 && (
-                <Badge variant="secondary">
+                <Badge variant="secondary" className="bg-green-100 text-green-800">
                   {activeFiltersCount} active
                 </Badge>
               )}
@@ -87,10 +86,10 @@ const AdvancedFilters = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
               {/* Search Keyword */}
               <div className="space-y-2">
-                <Label htmlFor="search-keyword">Search Keyword</Label>
+                <Label htmlFor="search-keyword">Tafuta kwa Neno</Label>
                 <Input
                   id="search-keyword"
-                  placeholder="Search in descriptions..."
+                  placeholder="Tafuta katika maelezo..."
                   value={filters.searchKeyword}
                   onChange={(e) => handleFilterChange('searchKeyword', e.target.value)}
                 />
@@ -98,7 +97,7 @@ const AdvancedFilters = () => {
 
               {/* Date From */}
               <div className="space-y-2">
-                <Label htmlFor="date-from">Date From</Label>
+                <Label htmlFor="date-from">Tarehe Kuanzia</Label>
                 <Input
                   id="date-from"
                   type="date"
@@ -109,7 +108,7 @@ const AdvancedFilters = () => {
 
               {/* Date To */}
               <div className="space-y-2">
-                <Label htmlFor="date-to">Date To</Label>
+                <Label htmlFor="date-to">Tarehe Mpaka</Label>
                 <Input
                   id="date-to"
                   type="date"
@@ -120,16 +119,16 @@ const AdvancedFilters = () => {
 
               {/* Category */}
               <div className="space-y-2">
-                <Label htmlFor="category">Category</Label>
+                <Label htmlFor="category">Jamii</Label>
                 <Select
                   value={filters.category}
                   onValueChange={(value) => handleFilterChange('category', value)}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="All categories" />
+                    <SelectValue placeholder="Jamii zote" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All categories</SelectItem>
+                    <SelectItem value="">Jamii zote</SelectItem>
                     {categories.map((category) => (
                       <SelectItem key={category} value={category}>
                         {category}
@@ -141,35 +140,35 @@ const AdvancedFilters = () => {
 
               {/* Transaction Type */}
               <div className="space-y-2">
-                <Label htmlFor="type">Transaction Type</Label>
+                <Label htmlFor="type">Aina ya Muamala</Label>
                 <Select
                   value={filters.type}
                   onValueChange={(value) => handleFilterChange('type', value)}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="All types" />
+                    <SelectValue placeholder="Aina zote" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All types</SelectItem>
-                    <SelectItem value="income">Income</SelectItem>
-                    <SelectItem value="expense">Expense</SelectItem>
+                    <SelectItem value="">Aina zote</SelectItem>
+                    <SelectItem value="income">Mapato</SelectItem>
+                    <SelectItem value="expense">Gharama</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               {/* Amount Range */}
               <div className="space-y-2">
-                <Label>Amount Range</Label>
+                <Label>Kiwango cha Kiasi (KES)</Label>
                 <div className="flex space-x-2">
                   <Input
-                    placeholder="Min"
+                    placeholder="Chini"
                     type="number"
                     step="0.01"
                     value={filters.minAmount}
                     onChange={(e) => handleFilterChange('minAmount', e.target.value)}
                   />
                   <Input
-                    placeholder="Max"
+                    placeholder="Juu"
                     type="number"
                     step="0.01"
                     value={filters.maxAmount}
@@ -180,26 +179,28 @@ const AdvancedFilters = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap gap-2 justify-between items-center pt-4 border-t">
-              <div className="flex flex-wrap gap-2">
+            <div className="flex flex-col sm:flex-row gap-4 justify-between items-center pt-4 border-t">
+              <div className="flex flex-wrap gap-2 w-full sm:w-auto">
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={clearFilters}
                   disabled={activeFiltersCount === 0}
+                  className="flex-1 sm:flex-none"
                 >
-                  Clear Filters
+                  Futa Vichungio
                 </Button>
-                <Button size="sm">
-                  Apply Filters
+                <Button size="sm" className="flex-1 sm:flex-none bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700">
+                  Tumia Vichungio
                 </Button>
               </div>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 w-full sm:w-auto">
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={() => exportData('excel')}
+                  className="flex-1 sm:flex-none"
                 >
                   <FileSpreadsheet className="w-4 h-4 mr-1" />
                   Excel
@@ -208,6 +209,7 @@ const AdvancedFilters = () => {
                   variant="outline"
                   size="sm"
                   onClick={() => exportData('csv')}
+                  className="flex-1 sm:flex-none"
                 >
                   <FileText className="w-4 h-4 mr-1" />
                   CSV
@@ -216,6 +218,7 @@ const AdvancedFilters = () => {
                   variant="outline"
                   size="sm"
                   onClick={() => exportData('pdf')}
+                  className="flex-1 sm:flex-none"
                 >
                   <Download className="w-4 h-4 mr-1" />
                   PDF

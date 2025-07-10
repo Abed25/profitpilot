@@ -34,8 +34,8 @@ const AddTransactionModal = () => {
   });
 
   const categories = {
-    income: ['Salary', 'Freelance', 'Investment', 'Business', 'Other Income'],
-    expense: ['Food & Dining', 'Transportation', 'Shopping', 'Entertainment', 'Utilities', 'Healthcare', 'Other Expense']
+    income: ['Sales', 'Stock Returns', 'Investment', 'Services', 'Other Income'],
+    expense: ['Stock', 'Rent', 'Utilities', 'M-PESA Charges', 'Salaries', 'Transport', 'Miscellaneous']
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -44,7 +44,7 @@ const AddTransactionModal = () => {
     if (!formData.amount || !formData.category || !formData.description) {
       toast({
         title: "Validation Error",
-        description: "Please fill in all required fields.",
+        description: "Please fill in all required fields / Jaza sehemu zote muhimu.",
         variant: "destructive"
       });
       return;
@@ -58,8 +58,8 @@ const AddTransactionModal = () => {
     });
 
     toast({
-      title: "Success!",
-      description: `${isIncome ? 'Income' : 'Expense'} transaction added successfully.`,
+      title: "Imefanikiwa!",
+      description: `${isIncome ? 'Mapato' : 'Gharama'} transaction added successfully.`,
     });
 
     // Reset form
@@ -75,27 +75,27 @@ const AddTransactionModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+        <Button className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg">
           <Plus className="w-4 h-4 mr-2" />
-          Add Transaction
+          Ongeza Rekodi
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] mx-4">
         <DialogHeader>
-          <DialogTitle>Add New Transaction</DialogTitle>
+          <DialogTitle>Ongeza Rekodi Mpya</DialogTitle>
           <DialogDescription>
-            Enter the details of your transaction below.
+            Ingiza maelezo ya muamala wako hapa chini.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Income/Expense Toggle */}
-          <div className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="flex items-center space-x-4 p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-700 rounded-lg">
             <Label htmlFor="transaction-type" className="text-sm font-medium">
-              Transaction Type
+              Aina ya Muamala
             </Label>
             <div className="flex items-center space-x-2">
               <span className={`text-sm ${!isIncome ? 'text-gray-500' : 'font-medium text-green-600'}`}>
-                Income
+                Mapato
               </span>
               <Switch
                 id="transaction-type"
@@ -103,16 +103,16 @@ const AddTransactionModal = () => {
                 onCheckedChange={(checked) => setIsIncome(!checked)}
               />
               <span className={`text-sm ${isIncome ? 'text-gray-500' : 'font-medium text-red-600'}`}>
-                Expense
+                Gharama
               </span>
             </div>
           </div>
 
           {/* Amount */}
           <div className="space-y-2">
-            <Label htmlFor="amount">Amount *</Label>
+            <Label htmlFor="amount">Kiasi (KES) *</Label>
             <div className="relative">
-              <DollarSign className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <span className="absolute left-3 top-3 text-sm text-gray-400">KES</span>
               <Input
                 id="amount"
                 type="number"
@@ -121,7 +121,7 @@ const AddTransactionModal = () => {
                 placeholder="0.00"
                 value={formData.amount}
                 onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
-                className="pl-9"
+                className="pl-12"
                 required
               />
             </div>
@@ -129,13 +129,13 @@ const AddTransactionModal = () => {
 
           {/* Category */}
           <div className="space-y-2">
-            <Label htmlFor="category">Category *</Label>
+            <Label htmlFor="category">Jamii *</Label>
             <Select
               value={formData.category}
               onValueChange={(value) => setFormData({ ...formData, category: value })}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Select a category" />
+                <SelectValue placeholder="Chagua jamii" />
               </SelectTrigger>
               <SelectContent>
                 {(isIncome ? categories.income : categories.expense).map((category) => (
@@ -152,12 +152,12 @@ const AddTransactionModal = () => {
 
           {/* Description */}
           <div className="space-y-2">
-            <Label htmlFor="description">Description *</Label>
+            <Label htmlFor="description">Maelezo *</Label>
             <div className="relative">
               <FileText className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
               <Textarea
                 id="description"
-                placeholder="Enter transaction description..."
+                placeholder="Ingiza maelezo ya muamala..."
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 className="pl-9"
@@ -169,7 +169,7 @@ const AddTransactionModal = () => {
 
           {/* Date */}
           <div className="space-y-2">
-            <Label htmlFor="date">Date</Label>
+            <Label htmlFor="date">Tarehe</Label>
             <div className="relative">
               <Calendar className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
               <Input
@@ -190,17 +190,17 @@ const AddTransactionModal = () => {
               onClick={() => setIsOpen(false)}
               className="flex-1"
             >
-              Cancel
+              Ghairi
             </Button>
             <Button
               type="submit"
               className={`flex-1 ${
                 isIncome
-                  ? 'bg-green-600 hover:bg-green-700'
-                  : 'bg-red-600 hover:bg-red-700'
+                  ? 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700'
+                  : 'bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700'
               }`}
             >
-              Add {isIncome ? 'Income' : 'Expense'}
+              Ongeza {isIncome ? 'Mapato' : 'Gharama'}
             </Button>
           </div>
         </form>
