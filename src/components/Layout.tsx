@@ -75,8 +75,8 @@ const Layout = ({ children }: LayoutProps) => {
   };
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'dark' : ''}`}>
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex w-full">
+    <div className={`min-h-screen w-full overflow-x-hidden ${isDarkMode ? 'dark' : ''}`}>
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex w-full max-w-full">
         {/* Fixed Sidebar on Desktop */}
         <div className="hidden lg:block lg:fixed lg:inset-y-0 lg:left-0 lg:z-50">
           <Sidebar
@@ -98,11 +98,13 @@ const Layout = ({ children }: LayoutProps) => {
         </div>
         
         {/* Main Content Area */}
-        <div className="flex-1 flex flex-col lg:ml-64 lg:transition-all lg:duration-300" 
-             style={{ marginLeft: isSidebarCollapsed ? '5rem' : '16rem' }}>
+        <div className={`flex-1 flex flex-col transition-all duration-300 ${
+          isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'
+        }`}>
           {/* Fixed Header on Desktop */}
-          <div className="lg:fixed lg:top-0 lg:right-0 lg:left-0 lg:z-40 lg:transition-all lg:duration-300"
-               style={{ left: isSidebarCollapsed ? '5rem' : '16rem' }}>
+          <div className={`lg:fixed lg:top-0 lg:right-0 lg:z-40 lg:transition-all lg:duration-300 ${
+            isSidebarCollapsed ? 'lg:left-20' : 'lg:left-64'
+          }`}>
             <Navbar
               isDarkMode={isDarkMode}
               toggleDarkMode={toggleDarkMode}
@@ -111,7 +113,7 @@ const Layout = ({ children }: LayoutProps) => {
           </div>
           
           {/* Scrollable Main Content */}
-          <main className="flex-1 lg:pt-16 lg:overflow-y-auto">
+          <main className="flex-1 lg:pt-16 overflow-y-auto overflow-x-hidden w-full">
             {children}
           </main>
         </div>
